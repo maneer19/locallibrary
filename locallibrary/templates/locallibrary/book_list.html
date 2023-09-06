@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Book List</h1>
+<!--We use the if, else, and endif template tags to check
+ whether the book_list has been defined and is not empty.-->
+
+    <ul>
+      {% for book in book_list %}
+       <li>
+        <a href="{% url 'details' book.id %}">{{ book.title }},</a>
+        <a href="{{ book.author.get_absolute_url }}">  ({{book.author}})</a>
+           <p><a href="{% url 'book-update' book.id %}" class="text-success">Update this book info ?</a></p>
+           <a href="{% url 'del' book.id %}" class="text-danger">want to delete this book  ?</a>
+      </li>
+      {% empty %}
+      <p>There are no books in the library.</p>
+      {% endfor %}
+    </ul>
+{% endblock %}

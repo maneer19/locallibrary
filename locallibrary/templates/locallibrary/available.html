@@ -1,0 +1,8 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{% for book in books %}
+<a href="{{book.book.get_absolute_url }}"><p>{{book.book.title}}</p></a>
+{% empty %}
+<p class="text-danger">Sorry there's no available books </p>
+{% endfor %}
+{% endblock %}

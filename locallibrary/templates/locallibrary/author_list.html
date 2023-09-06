@@ -1,0 +1,8 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{% for auth in author_list %}
+<a href="{% url 'author_detail' auth.id %}">{{auth.first_name}} {{auth.last_name}} </a>
+<hr>
+<a href="{% url 'author-create' %}">add a new author</a>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+    <!-- We can mark a BookInstance as returned. -->
+    <!-- Perhaps add code to link to a "book return" view here. -->
+
+{% for book in books %}
+<a href="{{book.book.get_absolute_url }}"><p>{{book.book.title}},<h3 class="{% if book.is_overdue %}text-danger{% endif %}">{{book.due_back}}</h3>,{% if user.is_staff %}{{book.borrower}} {% endif %}</p></a>
+  {% if perms.locallibrary.view_borrowed_books %}
+          <a href="{% url 'renew-book-librarian' book.id %}">Renew</a>
+          {% endif %}
+{% empty %}
+<p class="text-danger">Sorry there's no available books </p>
+{% endfor %}
+
+{% endblock %}
